@@ -42,9 +42,11 @@ where CONFIG_FILE is a path to a XML config file (f.e. config.xml).
 While the client-server approach would be more intuitive to use (no need to set up a seperate bot instance for every user), there are multiple reasons why the current implementation may be considered better:
 
 - safety concerns
-	As the software is using what is essentially a *key logger* to catch input, you would probably not want that data going to unwanted hands??. Since all this data is processed locally, there is no need to worry about that (as you can confirm in the source code).
+
+	As the software is using what is essentially a *key logger* to catch input, you would probably not want that data going to wrong hands. Since all of this data is processed locally, there is no need to worry about that (as you can confirm in the source code).
 	
 - latency
+
 	As there are no middlemen that obtain and process the sound data (like the hypothetical server would), naturally there is going to be less latency all around.
 
 Here, a simple approach like this ends up working surprisingly well.
