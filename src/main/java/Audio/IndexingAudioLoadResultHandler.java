@@ -19,7 +19,6 @@ public class IndexingAudioLoadResultHandler implements AudioLoadResultHandler {
         accessor.setTrack(trackIndex, track);
     }
     public void playlistLoaded(AudioPlaylist audioPlaylist) {
-        System.out.println("tracks");
         for(AudioTrack track : audioPlaylist.getTracks()){
             accessor.setTrack(trackIndex, track);
         }
@@ -27,8 +26,8 @@ public class IndexingAudioLoadResultHandler implements AudioLoadResultHandler {
     }
     public void noMatches() {
         System.out.println("no matches");
-    }
+    } //TODO
     public void loadFailed(FriendlyException e) {
         e.printStackTrace();
-    }
+    } //TODO
 }

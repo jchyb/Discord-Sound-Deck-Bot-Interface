@@ -28,9 +28,10 @@ public class Main{
         BOT_TOKEN = config.getString("token");
         List<String> paths = config.getList(String.class, "paths.path");
         List<Integer> keys = config.getList(Integer.class, "keys.key");
-        System.out.println(""+BOT_TOKEN);
-        System.out.println("Loaded Paths: " + paths.size());
-        System.out.println("Loaded Keys: " + keys.size());
+        System.out.println("Read token: " + BOT_TOKEN);
+        System.out.println("Loaded paths: " + paths.size());
+        System.out.println("Loaded keys: " + keys.size());
+
         if(keys.size() != paths.size()){
             System.out.println("WARNING");
             System.out.println("Amount of paths and keys read is different. Some sounds will not work.");
@@ -48,7 +49,7 @@ public class Main{
         KeyHandler keyHandler = new KeyHandler(accessor, keys);
         registerInput(keyHandler);
 
-        MessageListener messageListener = new MessageListener(sendHandler, playerManager, accessor);
+        MessageListener messageListener = new MessageListener(sendHandler);
 
         for(int i = 0; i < Math.min(paths.size(), keys.size()); i++){
             //TODO Add checks and fails

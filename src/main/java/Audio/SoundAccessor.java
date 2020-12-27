@@ -13,7 +13,6 @@ public class SoundAccessor {
         this.soundsAmount = soundsAmount;
         tracks = new AudioTrack[soundsAmount];
     }
-
     public void setTrack(int trackIndex, AudioTrack track){
         this.tracks[trackIndex] = track;
     }

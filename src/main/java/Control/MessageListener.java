@@ -15,14 +15,8 @@ public class MessageListener extends ListenerAdapter {
 
     private final AudioSendHandler audioSendHandler;
 
-    //debug
-    private final AudioPlayerManager playerManager;
-    private final SoundAccessor accessor;
-
-    public MessageListener(AudioSendHandler audioSendHandler, AudioPlayerManager playerManager, SoundAccessor accessor){
+    public MessageListener(AudioSendHandler audioSendHandler){
         this.audioSendHandler = audioSendHandler;
-        this.playerManager = playerManager;
-        this.accessor = accessor;
     }
 
     @Override
@@ -33,13 +27,17 @@ public class MessageListener extends ListenerAdapter {
 
         MessageChannel channel = event.getChannel();
         if (content.equals("!add-deck")) {
+            if(event.getMember()==null){
+                channel.sendMessage("Could not access member. Sorry!").queue();
+                return;
+            }
             if(event.getMember().getVoiceState() == null) {
                 channel.sendMessage("Could not access voice state. Sorry!").queue();
                 return;
             }
             VoiceChannel connectedChannel = event.getMember().getVoiceState().getChannel();
             if(connectedChannel == null){
-                channel.sendMessage("Connect to a voice channel first.").queue();
+                channel.sendMessage("Connect to a voice channel first (so I know where to connect).").queue();
                 return;
             }
 
