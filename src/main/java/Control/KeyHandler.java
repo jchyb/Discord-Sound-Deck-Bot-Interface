@@ -20,10 +20,10 @@ public class KeyHandler implements NativeKeyListener {
         if(keyAlreadyPressed.contains(e.getKeyCode())) return;
         keyAlreadyPressed.add(e.getKeyCode());
 
-        System.out.println("Key pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
-
-        if(keys.contains(e.getKeyCode()))
+        if(keys.contains(e.getKeyCode())) {
+            System.out.println("Key pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
             accessor.play(keys.indexOf(e.getKeyCode()));
+        }
     }
 
     public void nativeKeyReleased(NativeKeyEvent e) {

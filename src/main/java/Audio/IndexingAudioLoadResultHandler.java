@@ -8,26 +8,26 @@ public class IndexingAudioLoadResultHandler implements AudioLoadResultHandler {
 
     private final SoundAccessor accessor;
     private final int trackIndex;
+    private String trackPath;
 
-    public IndexingAudioLoadResultHandler(SoundAccessor accessor, int trackIndex) {
+    public IndexingAudioLoadResultHandler(SoundAccessor accessor, int trackIndex, String path) {
         this.accessor = accessor;
         this.trackIndex = trackIndex;
+        this.trackPath = path;
     }
 
     public void trackLoaded(AudioTrack track) {
-        System.out.println("Track Loaded");
+        System.out.println("Track Loaded: "+ trackPath);
         accessor.setTrack(trackIndex, track);
     }
     public void playlistLoaded(AudioPlaylist audioPlaylist) {
-        for(AudioTrack track : audioPlaylist.getTracks()){
-            accessor.setTrack(trackIndex, track);
-        }
-        //TODO DELETE
+        throw new UnsupportedOperationException();
     }
     public void noMatches() {
-        System.out.println("no matches");
-    } //TODO
+        System.out.println("Could not find (no matches): "+ trackPath);
+    }
     public void loadFailed(FriendlyException e) {
+        System.out.println("Loading failed: "+trackPath);
         e.printStackTrace();
-    } //TODO
+    }
 }

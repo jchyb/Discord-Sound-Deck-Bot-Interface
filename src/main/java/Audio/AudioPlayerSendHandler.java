@@ -16,7 +16,7 @@ public class AudioPlayerSendHandler implements AudioSendHandler {
     @Override
     public boolean canProvide(){
         lastFrame = audioPlayer.provide();
-        return lastFrame != null;    
+        return lastFrame != null;
     }
     @Override
     public ByteBuffer provide20MsAudio() {

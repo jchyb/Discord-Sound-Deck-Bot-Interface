@@ -18,8 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-public class Main{
-    public static String BOT_TOKEN;// = "Nzc1NDc2MjAxMjMyOTI0NzMz.X6m4fg.M1lerZaV4De5Wz0epoUBHscARQ0";
+public class Setup {
+    public static String BOT_TOKEN;
 
     public static void main(String[] arguments) throws Exception {
         Configurations configs = new Configurations();
@@ -37,7 +37,6 @@ public class Main{
             System.out.println("Amount of paths and keys read is different. Some sounds will not work.");
         }
         int soundsAmount = Math.min(paths.size(), keys.size());
-        //TODO warnings and errors
 
         AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
         AudioSourceManagers.registerLocalSource(playerManager);
@@ -52,8 +51,7 @@ public class Main{
         MessageListener messageListener = new MessageListener(sendHandler);
 
         for(int i = 0; i < Math.min(paths.size(), keys.size()); i++){
-            //TODO Add checks and fails
-            playerManager.loadItem(paths.get(i), new IndexingAudioLoadResultHandler(accessor, i));
+            playerManager.loadItem(paths.get(i), new IndexingAudioLoadResultHandler(accessor, i, paths.get(i)));
         }
 
         JDA api = JDABuilder.createDefault(BOT_TOKEN).addEventListeners(messageListener).build();
